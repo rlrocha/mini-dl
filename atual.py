@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb 25 09:42:57 2019
+Created on Mon Sep  9 15:08:27 2019
 
 @author: Rafael Rocha
 """
@@ -21,15 +21,8 @@ xb = np.concatenate([b, x], axis=1) # Entrada com bias
 
 print(np.concatenate([xb,t], axis=1))
 
-#w1 = np.random.rand(M,D+1)
-#w2 = np.random.rand(K,M+1)
-
-#w1 = np.random.normal(size=(M,D+1))
-#w2 = np.random.normal(size=(K,M+1))
-
-data = np.load('pesos_xor.npz')
-w1 = data['w1']
-w2 = data['w2']
+w1 = np.random.rand(M,D+1)
+w2 = np.random.rand(K,M+1)
 
 a = np.matmul(w1, xb.T)
 z = np.tanh(a)
@@ -42,5 +35,12 @@ y = np.matmul(w2, zb)
 print('\n')
 print(np.concatenate([t,y.T], axis=1))
 
+# Sum-of-squares error
+sse = 0.5*np.sum((y-t.T)**2)
+
 print('\n')
-print(mean_squared_error(t, y.T))
+#print(mean_squared_error(t, y.T))
+print(sse)
+
+deltak = y-t.T
+deltaj = (1-(zb**2))*np.sum(w2*deltak.T)
