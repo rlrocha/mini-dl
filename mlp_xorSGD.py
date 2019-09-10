@@ -21,8 +21,7 @@ def sse (t, y):
     Sum-of-squares error
     """
     
-#    error = 0.5*kb.sum((kb.sqrt(y-kb.transpose(t))))
-    error = (kb.square(y - t))/2
+    error = kb.square(y - t)
     
     return error
 

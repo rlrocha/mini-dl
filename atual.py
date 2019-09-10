@@ -13,7 +13,7 @@ t = np.array([[0],[1],[1],[0]])
 
 D = np.size(x,1)
 N = np.size(x,0)
-M = 5
+M = 2
 K = 1
 
 b = np.ones([N,1]) # Bias
@@ -43,4 +43,10 @@ print('\n')
 print(sse)
 
 deltak = y-t.T
-deltaj = (1-(zb**2))*np.sum(w2*deltak.T)
+
+a_temp = (1-np.square(zb))
+b_temp = w2.T*deltak
+
+deltaj = a_temp*b_temp
+
+#deltaj = (1-(z**2))*np.sum(w2.T*deltak)
