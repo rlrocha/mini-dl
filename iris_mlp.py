@@ -29,7 +29,7 @@ target_names = data['target_names']
 #target_names = iris.target_names
 
 x_train, x_test, t_train, t_test = train_test_split(x, t,
-                                                        test_size=0.3,
+                                                        test_size=0.2,
                                                         stratify=t)
 
 t_train_cat = to_categorical(t_train)
@@ -49,7 +49,7 @@ model.add(Dense(K, activation='softmax'))
 initial_weights = model.get_weights()
 
 model.compile(SGD(lr=0.01), 'categorical_crossentropy', metrics=['accuracy'])
-h = model.fit(x_train, t_train_cat, epochs=100, verbose=1,
+h = model.fit(x_train, t_train_cat, epochs=500, verbose=1,
               validation_data = (x_test, t_test_cat))
 
 #model.summary()

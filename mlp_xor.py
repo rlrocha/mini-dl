@@ -31,9 +31,9 @@ w2 = np.random.rand(K,M+1)
 #w2 = data['w2']
 
 # Pesos predefinidos para M = 2 e K = 1
-data = np.load('pesos_xor2.npz')
-w1 = data['w1']
-w2 = data['w2']
+#data = np.load('pesos_xor2.npz')
+#w1 = data['w1']
+#w2 = data['w2']
 
 
 a = np.matmul(w1, xb.T)

@@ -32,7 +32,7 @@ x = np.linspace(-10,10)
 """
 a = 1, a = 2 e a = 3
 """
-y, dy = sigmoid_func(x, a=1)
+y, dy = sigmoid_func(x, a=32)
 
 plt.figure()
 plt.plot(x, y)
