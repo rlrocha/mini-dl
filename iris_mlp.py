@@ -8,6 +8,7 @@ Created on Thu Feb 28 10:43:34 2019
 #%% Pacotes utilizados
 import numpy as np
 import matplotlib.pyplot as plt
+from keras import backend as bk
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.optimizers import SGD
@@ -17,14 +18,15 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.datasets import load_iris
 
 #%% Parâmetros iniciais
-#data = np.load('dataset_iris.npz')
-#x = data['x']
-#t = data['t']
+data = np.load('dataset_iris.npz')
+x = data['x']
+t = data['t']
+target_names = data['target_names']
 
-iris = load_iris()
-x = iris.data
-t = iris.target
-target_names = iris.target_names
+#iris = load_iris()
+#x = iris.data
+#t = iris.target
+#target_names = iris.target_names
 
 x_train, x_test, t_train, t_test = train_test_split(x, t,
                                                         test_size=0.3,
@@ -47,7 +49,7 @@ model.add(Dense(K, activation='softmax'))
 initial_weights = model.get_weights()
 
 model.compile(SGD(lr=0.01), 'categorical_crossentropy', metrics=['accuracy'])
-h = model.fit(x_train, t_train_cat, epochs=1000, verbose=1,
+h = model.fit(x_train, t_train_cat, epochs=100, verbose=1,
               validation_data = (x_test, t_test_cat))
 
 #model.summary()
@@ -94,3 +96,9 @@ plt.plot(x_temp, h.history['val_loss'])
 plt.ylabel('Perda')
 plt.xlabel('Época')
 plt.legend(['Treinamento', 'Teste'])
+
+#%%
+output_tensor = bk.function([model.layers[0].input], [model.layers[1].output])
+layer_output = output_tensor([x_test])
+out = np.array(layer_output)
+x_train_conv1 = out[0,:]

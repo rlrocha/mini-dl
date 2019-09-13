@@ -6,11 +6,11 @@ Created on Tue Sep 10 17:10:52 2019
 """
 
 # Parâmetros camada convolucional
-n_layers = 1
+n_channels = 1
 featureMaps = 6
 kernels = (5,5)
 
-paramsConv = featureMaps*((n_layers*(kernels[0]*kernels[1]))+1)
+paramsConv = featureMaps*((n_channels*(kernels[0]*kernels[1]))+1)
 
 print('Camada convolucional: ' + str(paramsConv))
 

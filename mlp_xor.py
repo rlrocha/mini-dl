@@ -31,9 +31,9 @@ w2 = np.random.rand(K,M+1)
 #w2 = data['w2']
 
 # Pesos predefinidos para M = 2 e K = 1
-#data = np.load('pesos_xor2.npz')
-#w1 = data['w1']
-#w2 = data['w2']
+data = np.load('pesos_xor2.npz')
+w1 = data['w1']
+w2 = data['w2']
 
 
 a = np.matmul(w1, xb.T)
@@ -47,20 +47,19 @@ y = np.matmul(w2, zb)
 print('\n')
 print(np.concatenate([t,y.T], axis=1))
 
-# Sum-of-squares error
-sse = np.mean(np.square(y-t.T))
+# Mean squared error
+mse = np.mean(np.square(y-t.T))
 
 print('\n')
-#print(mean_squared_error(t, y.T))
-print(sse)
+print(mse)
 
-deltak = y-t.T
-
-a_temp = (1-np.square(zb))
-b_temp = np.matmul(w2.T, deltak)
-
-#deltaj = np.matmul(a_temp, b_temp)
-deltaj = a_temp*b_temp
-
-dw2 = np.matmul(deltak, zb.T)
-dw1 = np.matmul(deltaj, xb)
+#deltak = y-t.T
+#
+#a_temp = (1-np.square(zb))
+#b_temp = np.matmul(w2.T, deltak)
+#
+##deltaj = np.matmul(a_temp, b_temp)
+#deltaj = a_temp*b_temp
+#
+#dw2 = np.matmul(deltak, zb.T)
+#dw1 = np.matmul(deltaj, xb)

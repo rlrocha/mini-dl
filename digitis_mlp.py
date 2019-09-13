@@ -18,12 +18,18 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.datasets import  load_digits
 
 #%% Parâmetros iniciais
-digits = load_digits()
+#digits = load_digits()
+#
+#img = digits.images[8]
+#x = digits.data
+#t = digits.target
+#target_names = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-img = digits.images[8]
-x = digits.data
-t = digits.target
-target_names = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+data = np.load('dataset_digits.npz')
+x = data['x_data']
+t = data['t']
+img = data['img']
+target_names = data['target_names']
 
 x_train, x_test, t_train, t_test = train_test_split(x, t,
                                                         test_size=0.3,

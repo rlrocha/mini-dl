@@ -22,7 +22,10 @@ from skimage.io import imread, imshow
 from skimage import img_as_ubyte, img_as_float
 
 #%% Parâmetros iniciais
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+#(x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+data = np.load('dataset_mnist.npz')
+x_train, y_train, x_test, y_test = data['x_train'], data['y_train'], data['x_test'], data['y_test']
 
 x_train = x_train.reshape(x_train.shape[0], x_train.shape[1], x_train.shape[2], 1)
 y_train = to_categorical(y_train)
@@ -47,7 +50,7 @@ model.compile(loss=categorical_crossentropy,
               optimizer=SGD(lr=0.001),
               metrics=['accuracy'])
 
-model.fit(x_train, y_train, epochs=50)
+model.fit(x_train, y_train, epochs=5)
 
 #%% Mapa de características
 
