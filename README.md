@@ -1,4 +1,5 @@
 # Minicurso Aprendizado Profundo e Redes Neurais Convolucionais
+[<img src="https://img.shields.io/badge/author-rlrocha-orange?style=flat-square"/>](https://github.com/rlrocha)
 
 Repositório com os exemplos utilizados no minicurso de aprendizado profundo e redes neurais convolucionais realizados na Universidade Federal do Pará (UFPA), campos Tucuruí (CAMTUC) em 2019.
 
